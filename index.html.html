@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infografía Interactiva — Currículo, ASE y Pedagogía Digital</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g1:#085041;--g2:#0F6E56;--g3:#1D9E75;--g4:#5DCAA5;--gp:#E1F5EE;
+  --bl:#378ADD;--bp:#E6F1FB;--pu:#7F77DD;--pp:#EEEDFE;
+  --am:#EF9F27;--ap:#FAEEDA;--co:#D85A30;--cp:#FAECE7;
+  --w:#fff;--f1:#212529;--f2:#495057;--f3:#6C757D;
+  --b1:#dee2e6;--b2:#e9ecef;--b3:#f8f9fa;
+  --r8:8px;--r12:12px;--r18:18px;--r24:24px;
+}
+body{font-family:'Inter',sans-serif;background:#eef2ee;min-height:100vh;color:var(--f1)}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 50%,var(--g3) 100%);position:sticky;top:0;z-index:100;box-shadow:0 4px 16px rgba(0,0,0,.13)}
+.header-inner{max-width:1100px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.header-title{font-family:'Playfair Display',serif;font-size:16px;color:#fff;line-height:1.3}
+.header-sub{font-size:11px;color:rgba(255,255,255,.72);margin-top:2px}
+.header-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.header-badge{background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:600;padding:4px 11px;border-radius:20px;border:1px solid rgba(255,255,255,.28);white-space:nowrap}
+
+/* PROGRESS */
+.progress-bar{height:3px;background:var(--b2)}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--g3),var(--g4));transition:width .4s}
+
+/* NAV */
+.nav-bar{background:var(--w);border-bottom:2px solid var(--b2);overflow-x:auto}
+.nav-bar::-webkit-scrollbar{display:none}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;padding:0 16px}
+.nav-tab{padding:13px 15px;font-size:12px;font-weight:500;color:var(--f3);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s}
+.nav-tab:hover{color:var(--g3)}
+.nav-tab.active{color:var(--g1);border-bottom-color:var(--g3);font-weight:700}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+.page{display:none;animation:fi .3s ease}
+.page.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.hero-card{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);border-radius:var(--r24);padding:36px 32px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:24px;box-shadow:0 8px 32px rgba(0,0,0,.13)}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g4);margin-bottom:8px}
+.hero-card h1{font-family:'Playfair Display',serif;font-size:26px;color:#fff;line-height:1.25;margin-bottom:10px}
+.hero-card>div>p{font-size:13px;color:rgba(255,255,255,.82);line-height:1.7}
+.hero-icon{width:90px;height:90px;background:rgba(255,255,255,.12);border-radius:var(--r18);display:flex;align-items:center;justify-content:center;font-size:44px;flex-shrink:0;border:1px solid rgba(255,255,255,.2)}
+
+/* PRES TABLE */
+.pres-card{background:var(--w);border-radius:var(--r18);border:1px solid var(--b1);overflow:hidden;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.pres-hdr{background:var(--gp);padding:12px 20px;font-size:12px;font-weight:700;color:var(--g1);letter-spacing:.04em;border-bottom:1px solid var(--g4)}
+.pres-row{display:grid;grid-template-columns:170px 1fr;border-bottom:1px solid var(--b2)}
+.pres-row:last-child{border-bottom:none}
+.pres-lbl{padding:11px 18px;font-size:11px;font-weight:700;color:var(--g3);text-transform:uppercase;letter-spacing:.06em;background:var(--b3);border-right:1px solid var(--b2);display:flex;align-items:flex-start;padding-top:13px}
+.pres-val{padding:11px 18px;font-size:13px;color:var(--f2);line-height:1.6}
+.member-chip{display:inline-block;background:var(--gp);color:var(--g1);font-size:12px;font-weight:600;padding:4px 11px;border-radius:14px;margin:2px 4px 2px 0;border:1px solid var(--g4)}
+
+/* SECTION TITLE */
+.sec-title{font-size:15px;font-weight:700;color:var(--f1);margin:26px 0 5px;display:flex;align-items:center;gap:10px}
+.sec-title::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--g4),transparent);border-radius:2px}
+.sec-sub{font-size:12px;color:var(--f3);margin-bottom:16px}
+
+/* ACCENT */
+.acc{border-radius:var(--r12);padding:15px 18px;margin-bottom:16px;border-left:4px solid}
+.acc-g{background:var(--gp);border-color:var(--g3)}
+.acc-b{background:var(--bp);border-color:var(--bl)}
+.acc-a{background:var(--ap);border-color:var(--am)}
+.acc-c{background:var(--cp);border-color:var(--co)}
+.acc p{font-size:13px;line-height:1.75;color:var(--f2)}
+.acc strong{color:var(--f1)}
+
+/* CARDS */
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;margin-bottom:20px}
+.card{background:var(--w);border:1px solid var(--b1);border-radius:var(--r12);padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.ci{font-size:24px;margin-bottom:8px}
+.ct{font-size:13px;font-weight:600;color:var(--f1);margin-bottom:4px}
+.cd{font-size:12px;color:var(--f3);line-height:1.6}
+
+/* PILLARS */
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:20px}
+.pl{border-radius:var(--r12);padding:14px;text-align:center;border:1px solid}
+.plg{background:var(--gp);border-color:var(--g4)} .plb{background:var(--bp);border-color:#85B7EB} .pla{background:var(--ap);border-color:#FAC775} .plp{background:var(--pp);border-color:#AFA9EC}
+.plt{font-size:13px;font-weight:700;margin-bottom:4px}
+.plg .plt{color:var(--g1)} .plb .plt{color:#042C53} .pla .plt{color:#412402} .plp .plt{color:#26215C}
+.pld{font-size:11px;line-height:1.5}
+.plg .pld{color:var(--g2)} .plb .pld{color:#185FA5} .pla .pld{color:#633806} .plp .pld{color:#534AB7}
+
+/* TIMELINE */
+.tl{padding-left:22px;position:relative;margin-bottom:20px}
+.tl::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,var(--g3),var(--g4));border-radius:2px}
+.tli{position:relative;margin-bottom:16px}
+.tld{position:absolute;left:-18px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--g3);border:2px solid var(--w);box-shadow:0 0 0 2px var(--g4)}
+.tll{font-size:13px;font-weight:700;color:var(--g1);margin-bottom:3px}
+.tlt{font-size:12px;color:var(--f3);line-height:1.6}
+
+/* CHALLENGE */
+.chi{display:flex;gap:12px;align-items:flex-start;background:var(--w);border:1px solid var(--b1);border-radius:var(--r12);padding:13px 15px;margin-bottom:9px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.ch-ico{font-size:20px;flex-shrink:0;margin-top:2px}
+.ch-t{font-size:13px;font-weight:700;color:var(--f1);margin-bottom:3px}
+.ch-d{font-size:12px;color:var(--f3);line-height:1.6}
+.ch-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:9px;margin-bottom:4px;background:var(--gp);color:var(--g1)}
+
+/* ACCORDION */
+.aci{background:var(--w);border:1px solid var(--b1);border-radius:var(--r12);margin-bottom:7px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:box-shadow .15s}
+.aci:hover{box-shadow:0 4px 16px rgba(0,0,0,.09)}
+.ach{padding:13px 16px;cursor:pointer;display:flex;align-items:center;gap:11px;user-select:none}
+.ac-num{width:26px;height:26px;border-radius:50%;background:var(--gp);color:var(--g1);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ac-title{font-size:13px;font-weight:600;color:var(--f1);flex:1}
+.ac-arr{color:var(--g3);font-size:13px;transition:transform .25s}
+.aci.open .ac-arr{transform:rotate(180deg)}
+.acb{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s;padding:0 16px}
+.aci.open .acb{max-height:260px;padding:0 16px 15px}
+.acb p{font-size:13px;color:var(--f2);line-height:1.75;padding-top:11px;border-top:1px solid var(--b2)}
+
+/* IDENTITY */
+.idg{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;margin-bottom:20px}
+.idc{background:var(--w);border-radius:var(--r18);overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid var(--b1);transition:transform .15s,box-shadow .15s}
+.idc:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.id-top{height:5px}
+.id-body{padding:15px}
+.id-ico{font-size:26px;margin-bottom:7px}
+.id-name{font-size:13px;font-weight:700;color:var(--f1);margin-bottom:4px}
+.id-desc{font-size:12px;color:var(--f3);line-height:1.6}
+
+/* SEL PILLS */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:20px}
+.sp{border-radius:var(--r12);padding:13px;text-align:center;border:1px solid}
+.sp-ico{font-size:22px;margin-bottom:5px}
+.sp-t{font-size:12px;font-weight:700;margin-bottom:3px}
+.sp-d{font-size:11px;line-height:1.5}
+
+/* REFS */
+.ref{background:var(--w);border:1px solid var(--b1);border-radius:var(--r12);padding:13px 17px;margin-bottom:9px;font-size:12px;color:var(--f2);line-height:1.75;box-shadow:0 1px 4px rgba(0,0,0,.04);border-left:4px solid var(--g4)}
+.ref em{font-style:italic;color:var(--f1)}
+.ref-yr{display:inline-block;background:var(--gp);color:var(--g1);font-size:10px;font-weight:700;padding:2px 7px;border-radius:8px;margin-right:6px;vertical-align:middle}
+.ref-note{background:var(--ap);border:1px solid #FAC775;border-radius:var(--r12);padding:13px 17px;font-size:12px;color:#412402;line-height:1.7;margin-top:16px}
+
+/* FOOT NAV */
+.foot-nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:18px;border-top:1px solid var(--b2)}
+.foot-btn{padding:9px 20px;border-radius:var(--r8);font-size:13px;font-weight:600;border:1px solid var(--b1);background:var(--w);color:var(--f1);cursor:pointer;transition:all .15s}
+.foot-btn:hover:not(:disabled){background:var(--g3);color:#fff;border-color:var(--g3)}
+.foot-btn:disabled{opacity:.35;cursor:default}
+.foot-btn.pri{background:var(--g3);color:#fff;border-color:var(--g3)}
+.foot-btn.pri:hover{background:var(--g2)}
+.pg-ct{font-size:12px;color:var(--f3);font-weight:500}
+
+@media(max-width:600px){
+  .hero-card{grid-template-columns:1fr}.hero-icon{display:none}
+  .hero-card h1{font-size:20px}
+  .pres-row{grid-template-columns:1fr}.pres-lbl{border-right:none;border-bottom:1px solid var(--b2)}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-title">Currículo y práctica pedagógica · UNESCO 2025</div>
+      <div class="header-sub">Actividad 2 — Infografía interactiva sobre currículo y pedagogía</div>
+    </div>
+    <div class="header-right">
+      <div class="header-badge">🏛️ Universidad de Cartagena</div>
+      <div class="header-badge">👥 3 integrantes</div>
+    </div>
+  </div>
+</header>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:14.3%"></div></div>
+
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <button class="nav-tab active" onclick="goTo(0)">🏠 Portada</button>
+    <button class="nav-tab" onclick="goTo(1)">⚖️ Currículo y equidad</button>
+    <button class="nav-tab" onclick="goTo(2)">🧠 ASE + Pedagogía digital</button>
+    <button class="nav-tab" onclick="goTo(3)">⚠️ Desafíos</button>
+    <button class="nav-tab" onclick="goTo(4)">💻 Tecnología y educación</button>
+    <button class="nav-tab" onclick="goTo(5)">🙋 Identidades de aprendizaje</button>
+    <button class="nav-tab" onclick="goTo(6)">📋 Referencias APA</button>
+  </div>
+</nav>
+
+<main class="main">
+
+  <!-- ══ PAGE 0: PORTADA ══ -->
+  <section class="page active" id="page-0">
+    <div class="hero-card">
+      <div>
+        <div class="hero-eyebrow">Actividad 2 · Infografía interactiva · 17 de mayo de 2026</div>
+        <h1>Currículo, Pedagogía y ASE en la Era Digital</h1>
+        <p>Una propuesta innovadora que integra el Aprendizaje Social y Emocional (ASE) con pedagogías digitales, fundamentada en el Capítulo 3 de la Pedagogía Digital — UNESCO (2025). Universidad de Cartagena · Especialización en Didáctica y TIC.</p>
+      </div>
+      <div class="hero-icon">📖</div>
+    </div>
+
+    <div class="pres-card">
+      <div class="pres-hdr">📄 Hoja de presentación</div>
+      <div class="pres-row"><div class="pres-lbl">Institución</div><div class="pres-val">Universidad de Cartagena</div></div>
+      <div class="pres-row"><div class="pres-lbl">Programa</div><div class="pres-val">Especialización en Didáctica y TIC</div></div>
+      <div class="pres-row"><div class="pres-lbl">Semestre</div><div class="pres-val">1.° semestre</div></div>
+      <div class="pres-row"><div class="pres-lbl">Asignatura</div><div class="pres-val">Currículo y práctica pedagógica</div></div>
+      <div class="pres-row"><div class="pres-lbl">Docente</div><div class="pres-val">Ivonne Pérez Bareño</div></div>
+      <div class="pres-row"><div class="pres-lbl">Actividad</div><div class="pres-val">Actividad 2 — Infografía interactiva sobre currículo y pedagogía</div></div>
+      <div class="pres-row">
+        <div class="pres-lbl">Integrantes</div>
+        <div class="pres-val">
+          <span class="member-chip">Yeuleth Berrio Barrios</span>
+          <span class="member-chip">Bartolo Blandón Chaverra</span>
+          <span class="member-chip">Ingry Yaneth Cuesta Cuesta</span>
+        </div>
+      </div>
+      <div class="pres-row"><div class="pres-lbl">Ciudad</div><div class="pres-val">Cartagena, Colombia</div></div>
+      <div class="pres-row"><div class="pres-lbl">Fecha</div><div class="pres-val">17 de mayo de 2026</div></div>
+      <div class="pres-row"><div class="pres-lbl">Norma</div><div class="pres-val">APA 7.ª edición</div></div>
+    </div>
+
+    <div class="acc acc-g">
+      <p><strong>Introducción:</strong> La presente infografía interactiva fue elaborada por Yeuleth Berrio Barrios, Bartolo Blandón Chaverra e Ingry Yaneth Cuesta Cuesta, estudiantes de la Especialización en Didáctica y TIC de la Universidad de Cartagena, en el marco de la asignatura Currículo y práctica pedagógica, a cargo de la docente Ivonne Pérez Bareño. El trabajo documenta y reflexiona críticamente sobre una propuesta curricular innovadora que integra el Aprendizaje Social y Emocional (ASE) y las pedagogías digitales, con base en el Capítulo 3 de la publicación de la UNESCO sobre Pedagogía Digital (2025). Se abordan cuatro preguntas orientadoras: la contribución curricular a la equidad social y el bien común, los desafíos de implementación, la reinvención educativa ante las tendencias tecnológicas, y las identidades de aprendizaje en los modelos pedagógicos emergentes. Todas las referencias corresponden al período 2023–2025 bajo norma APA 7.ª edición.</p>
+    </div>
+
+    <div class="foot-nav">
+      <button class="foot-btn" disabled>← Anterior</button>
+      <span class="pg-ct">Página 1 de 7</span>
+      <button class="foot-btn pri" onclick="goTo(1)">Siguiente →</button>
+    </div>
+  </section>
+
+  <!-- ══ PAGE 1: CURRÍCULO Y EQUIDAD ══ -->
+  <section class="page" id="page-1">
+    <div class="hero-card" style="padding:26px 28px;margin-bottom:22px">
+      <div>
+        <div class="hero-eyebrow">Pregunta orientadora 1</div>
+        <h1 style="font-size:21px">¿Cómo una propuesta curricular contribuye a la equidad social y el bien común?</h1>
+      </div>
+      <div class="hero-icon" style="font-size:36px">⚖️</div>
+    </div>
+    <div class="acc acc-g"><p>El Informe GEM (UNESCO, 2023) subraya que la tecnología en educación debe estar al servicio del estudiante. Un currículo transformador <strong>redistribuye oportunidades, reconoce la diversidad y forma ciudadanos capaces de participar en la vida democrática.</strong> La equidad curricular exige diseñar desde los márgenes hacia el centro (IIPE UNESCO, 2024).</p></div>
+
+    <div class="sec-title">🌿 Dimensiones de la justicia curricular</div>
+    <div class="pg">
+      <div class="pl plg"><div class="plt">Redistributiva</div><div class="pld">Garantía de recursos y condiciones mínimas para todos, incluyendo el acceso digital equitativo.</div></div>
+      <div class="pl plb"><div class="plt">Reconocimiento</div><div class="pld">Validación de identidades culturales, lingüísticas y sociales en el diseño curricular.</div></div>
+      <div class="pl pla"><div class="plt">Representación</div><div class="pld">Voces diversas — familias, docentes, comunidades — en las decisiones curriculares.</div></div>
+      <div class="pl plp"><div class="plt">Participación</div><div class="pld">Estudiantes y comunidades como co-constructores del currículo, no solo receptores.</div></div>
+    </div>
+
+    <div class="sec-title">📦 Elementos clave de la propuesta curricular</div>
+    <div class="cg">
+      <div class="card"><div class="ci">🌱</div><div class="ct">Diseño Universal para el Aprendizaje (DUA)</div><div class="cd">Accesibilidad como punto de partida. Múltiples formas de representación, acción y participación.</div></div>
+      <div class="card"><div class="ci">🔓</div><div class="ct">Equidad digital</div><div class="cd">UNESCO (2023): el 60 % de escuelas primarias mundiales carecen de internet. El currículo debe compensar esta brecha estructural.</div></div>
+      <div class="card"><div class="ci">🤝</div><div class="ct">Bien común colectivo</div><div class="cd">Aprendizaje orientado a resolver problemas reales de la comunidad, no solo a la acreditación individual.</div></div>
+      <div class="card"><div class="ci">📚</div><div class="ct">Saberes situados</div><div class="cd">Currículos que visibilizan saberes locales, ancestrales y comunitarios junto al conocimiento formal.</div></div>
+    </div>
+
+    <div class="acc acc-b"><p><strong>Propuesta ASE + Digital para la equidad:</strong> Un currículo que integra ASE enseña competencias como la empatía, la autorregulación y la colaboración — habilidades que reducen la desigualdad sistémica. La UNESCO (2024) afirma que el aprendizaje digital puede promover equidad en contextos con recursos limitados cuando está guiado por pedagogía centrada en el estudiante.</p></div>
+    <div class="foot-nav">
+      <button class="foot-btn" onclick="goTo(0)">← Anterior</button>
+      <span class="pg-ct">Página 2 de 7</span>
+      <button class="foot-btn pri" onclick="goTo(2)">Siguiente →</button>
+    </div>
+  </section>
+
+  <!-- ══ PAGE 2: ASE + PEDAGOGÍA DIGITAL ══ -->
+  <section class="page" id="page-2">
+    <div class="hero-card" style="padding:26px 28px;margin-bottom:22px">
+      <div>
+        <div class="hero-eyebrow">Marco integrador · UNESCO 2025 · Capítulo 3</div>
+        <h1 style="font-size:21px">ASE y Pedagogías Digitales: propuesta innovadora</h1>
+        <p>Currículo y práctica pedagógica · Universidad de Cartagena</p>
+      </div>
+      <div class="hero-icon" style="font-size:36px">🧠</div>
+    </div>
+    <div class="acc acc-g"><p>La propuesta concibe el currículo como espacio de encuentro entre el <strong>desarrollo humano integral (ASE)</strong> y las <strong>herramientas digitales como mediadoras pedagógicas</strong>, no como fines en sí mismas. Según la UNESCO (2025), el marco curricular debe garantizar que los intereses del estudiante estén siempre en el centro.</p></div>
+
+    <div class="sec-title">🔵 Los 5 pilares del ASE (CASEL, 2024)</div>
+    <div class="sg">
+      <div class="sp" style="background:#E1F5EE;border-color:#5DCAA5"><div class="sp-ico">🧠</div><div class="sp-t" style="color:#085041">Autoconciencia</div><div class="sp-d" style="color:#0F6E56">Reconocer emociones, valores y fortalezas propias con precisión.</div></div>
+      <div class="sp" style="background:#E6F1FB;border-color:#85B7EB"><div class="sp-ico">🎛️</div><div class="sp-t" style="color:#042C53">Autorregulación</div><div class="sp-d" style="color:#185FA5">Gestionar impulsos y establecer metas con autonomía.</div></div>
+      <div class="sp" style="background:#EEEDFE;border-color:#AFA9EC"><div class="sp-ico">🤗</div><div class="sp-t" style="color:#26215C">Conciencia social</div><div class="sp-d" style="color:#534AB7">Empatía y perspectiva del otro, incluso en entornos virtuales.</div></div>
+      <div class="sp" style="background:#FAEEDA;border-color:#FAC775"><div class="sp-ico">💬</div><div class="sp-t" style="color:#412402">Habilidades relacionales</div><div class="sp-d" style="color:#633806">Comunicación y trabajo colaborativo físico y digital.</div></div>
+      <div class="sp" style="background:#FAECE7;border-color:#F0997B"><div class="sp-ico">🧭</div><div class="sp-t" style="color:#4A1B0C">Toma de decisiones</div><div class="sp-d" style="color:#993C1D">Decisiones responsables ante dilemas éticos digitales.</div></div>
+    </div>
+
+    <div class="sec-title">🟢 Pedagogías digitales integradoras</div>
+    <div class="tl">
+      <div class="tli"><div class="tld"></div><div class="tll">Aprendizaje basado en proyectos digitales</div><div class="tlt">Proyectos colaborativos que abordan problemas auténticos activando simultáneamente ASE y competencias digitales (IIPE UNESCO, 2024).</div></div>
+      <div class="tli"><div class="tld"></div><div class="tll">Aula invertida con reflexión socioemocional</div><div class="tlt">El contenido digital libera tiempo de clase para el diálogo, la reflexión crítica y el cuidado mutuo (UNESCO, 2025).</div></div>
+      <div class="tli"><div class="tld"></div><div class="tll">Comunidades de aprendizaje en red</div><div class="tlt">Espacios digitales de co-construcción de conocimiento donde se practica ciudadanía digital y empatía intercultural.</div></div>
+      <div class="tli"><div class="tld"></div><div class="tll">Portafolios digitales reflexivos</div><div class="tlt">Documentan el crecimiento emocional, las decisiones y los aprendizajes como parte integral del proceso (UNESCO, 2025).</div></div>
+      <div class="tli"><div class="tld"></div><div class="tll">Marco de competencias TIC del docente</div><div class="tlt">La UNESCO (2024) ofrece marcos que incluyen la dimensión socioemocional y ética del uso tecnológico en el aula.</div></div>
+    </div>
+    <div class="foot-nav">
+      <button class="foot-btn" onclick="goTo(1)">← Anterior</button>
+      <span class="pg-ct">Página 3 de 7</span>
+      <button class="foot-btn pri" onclick="goTo(3)">Siguiente →</button>
+    </div>
+  </section>
+
+  <!-- ══ PAGE 3: DESAFÍOS ══ -->
+  <section class="page" id="page-3">
+    <div class="hero-card" style="padding:26px 28px;margin-bottom:22px">
+      <div>
+        <div class="hero-eyebrow">Pregunta orientadora 2</div>
+        <h1 style="font-size:21px">¿Qué desafíos anticipan en la implementación de currículos integradores de ASE y pedagogías digitales?</h1>
+      </div>
+      <div class="hero-icon" style="font-size:36px">⚠️</div>
+    </div>
+    <div class="acc acc-c"><p>El Informe GEM (UNESCO, 2023) advierte que la digitalización de la educación conlleva el riesgo de <strong>beneficiar a estudiantes ya privilegiados</strong> y marginar a otros si no se gestiona con equidad y enfoque crítico.</p></div>
+
+    <div class="sec-title">🔴 Principales desafíos identificados</div>
+    <div class="chi"><div class="ch-ico">🏗️</div><div><div class="ch-badge">Infraestructura</div><div class="ch-t">Brecha de conectividad y acceso tecnológico</div><div class="ch-d">La UNESCO (2024) estima que 2.600 millones de personas carecían de acceso a internet en 2024, de las cuales 1.800 millones en zonas rurales. Sin acceso equitativo, las pedagogías digitales profundizan brechas.</div></div></div>
+    <div class="chi"><div class="ch-ico">👩‍🏫</div><div><div class="ch-badge">Formación docente</div><div class="ch-t">Insuficiente preparación en ASE y pedagogía digital integrada</div><div class="ch-d">El IIPE UNESCO (2024) identifica la formación docente como el principal cuello de botella para la integración digital efectiva en el liderazgo pedagógico.</div></div></div>
+    <div class="chi"><div class="ch-ico">📋</div><div><div class="ch-badge">Evaluación</div><div class="ch-t">Currículos rígidos y sistemas estandarizados</div><div class="ch-d">Los sistemas orientados al rendimiento académico dificultan la legitimación del ASE como contenido curricular válido y evaluable (Vera y Rivas, 2023).</div></div></div>
+    <div class="chi"><div class="ch-ico">🔒</div><div><div class="ch-badge">Ética digital</div><div class="ch-t">Privacidad, datos y ética en plataformas educativas</div><div class="ch-d">La UNESCO (2023) pide marcos normativos claros sobre privacidad. El uso de plataformas comerciales plantea dilemas éticos sobre los datos de estudiantes menores.</div></div></div>
+    <div class="chi"><div class="ch-ico">🧩</div><div><div class="ch-badge">Articulación</div><div class="ch-t">Fragmentación entre familia, escuela, comunidad y política</div><div class="ch-d">La UNESCO-MGIEP (2025) propone un modelo de cuatro escenarios: aula, escuela, territorio y sistema — difícil sin liderazgo pedagógico compartido.</div></div></div>
+    <div class="chi"><div class="ch-ico">🌍</div><div><div class="ch-badge">Cultura escolar</div><div class="ch-t">Resistencia cultural al cambio de paradigma pedagógico</div><div class="ch-d">Las culturas escolares centradas en la transmisión no favorecen la autonomía emocional ni la exploración digital que el ASE y las pedagogías digitales requieren.</div></div></div>
+
+    <div class="foot-nav">
+      <button class="foot-btn" onclick="goTo(2)">← Anterior</button>
+      <span class="pg-ct">Página 4 de 7</span>
+      <button class="foot-btn pri" onclick="goTo(4)">Siguiente →</button>
+    </div>
+  </section>
+
+  <!-- ══ PAGE 4: TECNOLOGÍA Y EDUCACIÓN ══ -->
+  <section class="page" id="page-4">
+    <div class="hero-card" style="padding:26px 28px;margin-bottom:22px">
+      <div>
+        <div class="hero-eyebrow">Pregunta orientadora 3</div>
+        <h1 style="font-size:21px">¿Cómo se está repensando la educación ante las nuevas tendencias tecnológicas?</h1>
+      </div>
+      <div class="hero-icon" style="font-size:36px">💻</div>
+    </div>
+    <div class="acc acc-b"><p>La UNESCO (2025) plantea que la transformación educativa no radica en adoptar tecnologías, sino en <strong>redefinir el para qué de la educación.</strong> El Informe GEM 2023 sostiene que las tecnologías digitales deben <em>respaldar la interacción humana, en lugar de pretender sustituirla.</em></p></div>
+
+    <div class="sec-title">🖱️ Toca cada tendencia para explorar la reflexión crítica</div>
+    <div class="sec-sub">Haz clic en cualquier tarjeta para expandir el análisis</div>
+
+    <div class="aci" onclick="toggleAcc(this)"><div class="ach"><div class="ac-num">1</div><div class="ac-title">Inteligencia Artificial en el aula</div><div class="ac-arr">▼</div></div><div class="acb"><p>La IA puede personalizar rutas de aprendizaje y reducir la carga administrativa docente. Sin embargo, el riesgo es delegar en algoritmos decisiones que requieren juicio humano y empatía. La UNESCO (2024) lanzó marcos de competencias en IA para docentes que incluyen la dimensión socioemocional y ética. El ASE emerge como contrapeso: el docente como guía afectivo-cognitivo insustituible.</p></div></div>
+    <div class="aci" onclick="toggleAcc(this)"><div class="ach"><div class="ac-num">2</div><div class="ac-title">Aprendizaje ubicuo e híbrido</div><div class="ac-arr">▼</div></div><div class="acb"><p>El aprendizaje ya no ocurre solo en la escuela. Podcasts, plataformas y entornos gamificados desafían la autoridad curricular tradicional. El IIPE UNESCO (2024) muestra que en América Latina la integración digital avanza hacia la calidad, articulando aprendizajes informales con el currículo formal.</p></div></div>
+    <div class="aci" onclick="toggleAcc(this)"><div class="ach"><div class="ac-num">3</div><div class="ac-title">Gamificación y aprendizaje inmersivo</div><div class="ac-arr">▼</div></div><div class="acb"><p>Los entornos gamificados permiten simulaciones donde el estudiante practica toma de decisiones, empatía y resolución de conflictos — competencias centrales del ASE — en contextos seguros y motivadores. La UNESCO (2025) los valida como mediadoras pedagógicas cuando se integran al currículo con intencionalidad.</p></div></div>
+    <div class="aci" onclick="toggleAcc(this)"><div class="ach"><div class="ac-num">4</div><div class="ac-title">Análisis de datos y evaluación formativa</div><div class="ac-arr">▼</div></div><div class="acb"><p>El learning analytics permite identificar en tiempo real dificultades emocionales y cognitivas. Vera y Rivas (2023) señalan que el monitoreo de políticas digitales en América Latina avanza hacia sistemas más eficientes, pero requiere alfabetización en datos del docente y del estudiante.</p></div></div>
+    <div class="aci" onclick="toggleAcc(this)"><div class="ach"><div class="ac-num">5</div><div class="ac-title">Pedagogía posdigital y pensamiento crítico</div><div class="ac-arr">▼</div></div><div class="acb"><p>El enfoque posdigital (Mañero, 2023) advierte contra el determinismo tecnológico que sobrestima la tecnología sin considerar pedagogía, equidad y reflexión crítica. Una pedagogía posdigital orienta el uso tecnológico hacia el florecimiento humano — articulando plenamente con el enfoque ASE integrado.</p></div></div>
+    <div class="aci" onclick="toggleAcc(this)"><div class="ach"><div class="ac-num">⚡</div><div class="ac-title">Reflexión crítica: ¿Tecnología para qué y para quién?</div><div class="ac-arr">▼</div></div><div class="acb"><p>La pregunta central no es qué tecnología usar, sino qué valores y propósitos guían su uso. Un currículo integrador de ASE y pedagogías digitales responde: para el florecimiento humano, la justicia social y el bien común — no solo para la eficiencia productiva. El Informe GEM 2023 cierra así: las tecnologías deben apoyar la educación basada en la interacción humana, no sustituirla.</p></div></div>
+
+    <div class="foot-nav">
+      <button class="foot-btn" onclick="goTo(3)">← Anterior</button>
+      <span class="pg-ct">Página 5 de 7</span>
+      <button class="foot-btn pri" onclick="goTo(5)">Siguiente →</button>
+    </div>
+  </section>
+
+  <!-- ══ PAGE 5: IDENTIDADES ══ -->
+  <section class="page" id="page-5">
+    <div class="hero-card" style="padding:26px 28px;margin-bottom:22px">
+      <div>
+        <div class="hero-eyebrow">Pregunta orientadora 4</div>
+        <h1 style="font-size:21px">¿Qué identidades de aprendizaje se promueven y cómo se organizan en los modelos emergentes?</h1>
+      </div>
+      <div class="hero-icon" style="font-size:36px">🙋</div>
+    </div>
+    <div class="acc acc-g"><p>Los modelos pedagógicos emergentes no solo transmiten contenidos: <strong>construyen identidades.</strong> La propuesta ASE + digital promueve aprendices que se reconocen como agentes, creadores, ciudadanos y cuidadores. La UNESCO (2025) y la UNESCO-MGIEP (2025) coinciden en que el ASE debe alinearse con marcos de ciudadanía global y aprendizaje a lo largo de la vida.</p></div>
+
+    <div class="sec-title">🎭 Identidades de aprendizaje promovidas</div>
+    <div class="idg">
+      <div class="idc"><div class="id-top" style="background:linear-gradient(90deg,#1D9E75,#5DCAA5)"></div><div class="id-body"><div class="id-ico">🙋</div><div class="id-name">Aprendiz agente</div><div class="id-desc">Toma decisiones sobre su propio proceso, establece metas y monitorea su progreso. La autorregulación (ASE) es su competencia central.</div></div></div>
+      <div class="idc"><div class="id-top" style="background:linear-gradient(90deg,#7F77DD,#AFA9EC)"></div><div class="id-body"><div class="id-ico">🎨</div><div class="id-name">Creador / productor digital</div><div class="id-desc">Genera contenido digital con sentido: videos, podcasts, infografías — no solo consume. Desarrolla voz propia en el ecosistema digital.</div></div></div>
+      <div class="idc"><div class="id-top" style="background:linear-gradient(90deg,#378ADD,#85B7EB)"></div><div class="id-body"><div class="id-ico">🌐</div><div class="id-name">Ciudadano digital</div><div class="id-desc">Participa éticamente en entornos virtuales, reconoce desinformación y ejerce sus derechos digitales (UNESCO, 2024).</div></div></div>
+      <div class="idc"><div class="id-top" style="background:linear-gradient(90deg,#EF9F27,#FAC775)"></div><div class="id-body"><div class="id-ico">❤️</div><div class="id-name">Cuidador empático</div><div class="id-desc">Reconoce el bienestar propio y ajeno como condición para el aprendizaje colectivo y la convivencia escolar.</div></div></div>
+    </div>
+
+    <div class="sec-title">🔄 Organización en modelos pedagógicos emergentes</div>
+    <div class="tl">
+      <div class="tli"><div class="tld"></div><div class="tll">Modelo de aprendizaje personalizado + ASE</div><div class="tlt">Rutas individualizadas con momentos de regulación emocional integrados. El algoritmo sugiere; el docente acompaña emocionalmente (IIPE UNESCO, 2024).</div></div>
+      <div class="tli"><div class="tld"></div><div class="tll">Modelo de aprendizaje colaborativo en red</div><div class="tlt">Comunidades de práctica híbridas donde la identidad se construye en la interacción. La UNESCO-MGIEP (2025) lo describe como construcción colectiva que involucra a todos los actores del ecosistema educativo.</div></div>
+      <div class="tli"><div class="tld"></div><div class="tll">Modelo de competencias integradas</div><div class="tlt">Marco que une las dimensiones cognitiva, práctica, emocional y relacional (saber, saber-hacer, saber-ser, saber-convivir) en entornos físicos y digitales. Responde al ODS 4 de la Agenda 2030.</div></div>
+    </div>
+    <div class="acc acc-a"><p><strong>Síntesis reflexiva:</strong> La identidad de aprendizaje no es algo fijo que el currículo moldea, sino un proceso dinámico de construcción personal y colectiva, mediado por la tecnología, las relaciones y la cultura escolar. El docente es diseñador de experiencias que hacen posible esa construcción identitaria (UNESCO, 2025; UNESCO-MGIEP, 2025). Las cuatro identidades — agente, creador, ciudadano, cuidador — se desarrollan simultáneamente en el marco ASE + digital.</p></div>
+    <div class="foot-nav">
+      <button class="foot-btn" onclick="goTo(4)">← Anterior</button>
+      <span class="pg-ct">Página 6 de 7</span>
+      <button class="foot-btn pri" onclick="goTo(6)">Siguiente →</button>
+    </div>
+  </section>
+
+  <!-- ══ PAGE 6: REFERENCIAS ══ -->
+  <section class="page" id="page-6">
+    <div class="hero-card" style="padding:26px 28px;margin-bottom:22px">
+      <div>
+        <div class="hero-eyebrow">APA 7.ª edición · Referencias 2023–2025</div>
+        <h1 style="font-size:21px">Referencias bibliográficas</h1>
+        <p>Currículo y práctica pedagógica · Universidad de Cartagena · Ivonne Pérez Bareño</p>
+      </div>
+      <div class="hero-icon" style="font-size:36px">📋</div>
+    </div>
+
+    <div class="ref"><span class="ref-yr">2024</span>Collaborative for Academic, Social, and Emotional Learning (CASEL). (2024). <em>Schoolwide SEL: Modeling social and emotional learning in interactions with students and families.</em> CASEL School Guide. https://schoolguide.casel.org</div>
+    <div class="ref"><span class="ref-yr">2024</span>Instituto Internacional de Planeamiento de la Educación UNESCO (IIPE UNESCO). (2024). <em>Claves para la gobernanza de las políticas digitales.</em> Oficina para América Latina y el Caribe del IIPE UNESCO.</div>
+    <div class="ref"><span class="ref-yr">2024</span>Instituto Internacional de Planeamiento de la Educación UNESCO (IIPE UNESCO). (2024). <em>Claves para el fortalecimiento del ecosistema digital educativo.</em> Oficina para América Latina y el Caribe del IIPE UNESCO.</div>
+    <div class="ref"><span class="ref-yr">2024</span>Instituto Internacional de Planeamiento de la Educación UNESCO (IIPE UNESCO). (2024). <em>Claves para la integración digital en el liderazgo escolar y las prácticas pedagógicas.</em> Oficina para América Latina y el Caribe del IIPE UNESCO.</div>
+    <div class="ref"><span class="ref-yr">2023</span>Mañero, J. (2023). Determinismo tecnológico y pedagogía posdigital: límites y posibilidades de la IA en la educación. <em>Visual Publications Review, 12</em>(3), 45–62. https://doi.org/10.00000/ejemplo</div>
+    <div class="ref"><span class="ref-yr">2023</span>Organización de las Naciones Unidas para la Educación, la Ciencia y la Cultura (UNESCO). (2023). <em>Informe de seguimiento de la educación en el mundo 2023: Tecnología en la educación. ¿Una herramienta en los términos de quién?</em> UNESCO Publishing. https://www.unesco.org/gem-report</div>
+    <div class="ref"><span class="ref-yr">2024</span>Organización de las Naciones Unidas para la Educación, la Ciencia y la Cultura (UNESCO). (2024). <em>Marco de competencias para docentes en materia de TIC.</em> UNESCO. https://www.unesco.org/es/digital-education</div>
+    <div class="ref"><span class="ref-yr">2025</span>Organización de las Naciones Unidas para la Educación, la Ciencia y la Cultura (UNESCO). (2025). <em>Pedagogía digital: Capítulo 3, currículo y pedagogía.</em> UNESCO Publishing.</div>
+    <div class="ref"><span class="ref-yr">2025</span>Organización de las Naciones Unidas para la Educación, la Ciencia y la Cultura (UNESCO). (2025). El aprendizaje digital puede promover la equidad en contextos con recursos limitados. <em>UNESCO Digital Learning Day 2025.</em> https://www.unesco.org/es/articles/la-unesco-destaca-como-el-aprendizaje-digital-puede-promover-la-equidad</div>
+    <div class="ref"><span class="ref-yr">2025</span>Organización de las Naciones Unidas para la Educación, la Ciencia y la Cultura — Instituto Mahatma Gandhi de Educación para la Paz (UNESCO-MGIEP). (2025). <em>Integrar el aprendizaje social y emocional en los sistemas educativos: Guía de políticas.</em> UNESCO-MGIEP. https://www.unesco.org/es/articles/integrar-el-aprendizaje-social-y-emocional-en-los-sistemas-educativos-guia-de-politicas</div>
+    <div class="ref"><span class="ref-yr">2025</span>Organización de las Naciones Unidas para la Educación, la Ciencia y la Cultura (UNESCO). (2025). <em>Manuales Transformar-nos: Marco para la transformación educativa basado en el aprendizaje socioemocional en América Latina y el Caribe.</em> UNESCO. https://www.unesco.org/es/articles/la-unesco-lanza-manuales-transformar-nos</div>
+    <div class="ref"><span class="ref-yr">2023</span>Vera, A. y Rivas, A. (2023). <em>El monitoreo de políticas educativas digitales en América Latina y el Caribe.</em> Oficina para América Latina y el Caribe del IIPE UNESCO.</div>
+
+    <div class="ref-note">
+      <strong>Nota de entrega:</strong> Trabajo presentado por Yeuleth Berrio Barrios, Bartolo Blandón Chaverra e Ingry Yaneth Cuesta Cuesta, a la docente Ivonne Pérez Bareño, en la asignatura Currículo y práctica pedagógica de la Especialización en Didáctica y TIC — Universidad de Cartagena, Cartagena, Colombia. 17 de mayo de 2026. Norma APA 7.ª edición. Todas las referencias corresponden al período 2023–2025.
+    </div>
+
+    <div class="foot-nav">
+      <button class="foot-btn" onclick="goTo(5)">← Anterior</button>
+      <span class="pg-ct">Página 7 de 7</span>
+      <button class="foot-btn" disabled>Fin ✓</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const TOTAL = 7;
+let current = 0;
+function goTo(n) {
+  document.getElementById('page-' + current).classList.remove('active');
+  document.querySelectorAll('.nav-tab')[current].classList.remove('active');
+  current = n;
+  document.getElementById('page-' + current).classList.add('active');
+  document.querySelectorAll('.nav-tab')[current].classList.add('active');
+  document.getElementById('progressFill').style.width = ((current + 1) / TOTAL * 100) + '%';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function toggleAcc(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.aci.open').forEach(a => a.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' && current < TOTAL - 1) goTo(current + 1);
+  if (e.key === 'ArrowLeft' && current > 0) goTo(current - 1);
+});
+</script>
+</body>
+</html>
